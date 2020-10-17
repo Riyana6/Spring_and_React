@@ -2,12 +2,14 @@ import React from 'react';
 
 import './App.css';
 
+import NavigationBar from './components/NavigationBar';
 function App() {
   return (
     <div className="App">
-   
-        Welcome to BookShop
-
+      <NavigationBar/>
+      <p>
+        Welcome to Book Shop
+      </p>
     </div>
   );
 }
