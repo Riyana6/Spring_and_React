@@ -1,5 +1,8 @@
 import React, {Component} from'react';
 import {Card,Form,Button ,Col} from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSave} from '@fortawesome/free-solid-svg-icons';
+import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 export default class Book extends Component{
     constructor(props) {
         super(props);
@@ -21,7 +24,7 @@ export default class Book extends Component{
     render() {
         return (
             <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header>Add Book</Card.Header>
+                <Card.Header><FontAwesomeIcon icon={faPlusSquare}/> Add Book</Card.Header>
                 <Form onSubmit={this.submitBook} id="bookFormId">
                     <Card.Body>
                         <Form.Row>
@@ -87,7 +90,7 @@ export default class Book extends Component{
                     </Card.Body>
                     <Card.Footer style={{"textAlign":"right"}}>
                         <Button size="sm" variant="success" type="submit">
-                            Submit
+                        <FontAwesomeIcon icon={faSave}/> Submit
                         </Button>
                     </Card.Footer>
                 </Form>
