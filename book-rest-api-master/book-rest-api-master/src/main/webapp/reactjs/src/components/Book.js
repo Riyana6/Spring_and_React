@@ -4,10 +4,12 @@ export default class Book extends Component{
     constructor(props) {
         super(props);
         this.state = {title:'', author:'', coverPhotoURL:'', isbnNumber:'', price:'', language:''}
+        this.bookChange = this.bookChange.bind(this);
+        this.submitBook = this.submitBook.bind(this);
     }
 
     submitBook(event) {
-        alert(this.state.title);
+        alert('Title: '+this.state.title+', Author: '+this.state.author+', Cover Phtoto URL: '+this.state.coverPhotoURL+', ISBN Number: '+this.state.isbnNumber+', Price: '+this.state.price+', Language: '+this.state.language);
         event.preventDefault();
     }
 
@@ -20,10 +22,10 @@ export default class Book extends Component{
         return (
             <Card className={"border border-dark bg-dark text-white"}>
                 <Card.Header>Add Book</Card.Header>
-                <Form onSubmit={this.submitBook} id="bookFormId" controlId="formGridTitle">
+                <Form onSubmit={this.submitBook} id="bookFormId">
                     <Card.Body>
                         <Form.Row>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} controlId="formGridTitle">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control required
                                      type="text" name="title"
@@ -32,42 +34,52 @@ export default class Book extends Component{
                                      className={"bg-dark text-white"} 
                                      placeholder="Enter Book Title" />
                             </Form.Group>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} controlId="formGridAuthor">
                                 <Form.Label>Author</Form.Label>
-                                <Form.Control 
-                                    type="text" name="author" 
+                                <Form.Control required
+                                    type="text" name="author"
+                                    value={this.state.author}
+                                    onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Name" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} controlId="formGridCoverPhotoURL">
                                 <Form.Label>Cover Photo URL</Form.Label>
-                                <Form.Control 
-                                    type="text" name="coverPhotoURL" 
+                                <Form.Control required
+                                    type="text" name="coverPhotoURL"
+                                    value={this.state.coverPhotoURL}
+                                    onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Cover Photo URL" />
                             </Form.Group>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} controlId="formGridIsbnNumber">
                                 <Form.Label>ISBN Number</Form.Label>
-                                <Form.Control 
+                                <Form.Control required
                                     type="text" name="isbnNumber" 
+                                    value={this.state.isbnNumber}
+                                    onChange={this.bookChange}
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book ISBN Number" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} controlId="formGridPrice">
                                 <Form.Label>Price</Form.Label>
-                                <Form.Control 
-                                    type="text" name="price" 
+                                <Form.Control required
+                                    type="text" name="price"
+                                    value={this.state.price}
+                                    onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Price" />
                             </Form.Group>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} controlId="formGridLanguage">
                                 <Form.Label>Language</Form.Label>
-                                <Form.Control 
-                                    type="text" name="language" 
+                                <Form.Control required
+                                    type="text" name="language"
+                                    value={this.state.language}
+                                    onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Language" />
                             </Form.Group>
