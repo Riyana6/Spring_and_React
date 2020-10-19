@@ -18,7 +18,7 @@ export default class BookList extends Component{
     }
 
     findAllBooks(){
-        axios.get("http://localhost:8081/rest/books/")
+        axios.get("http://localhost:8081/rest/books")
             .then(response => response.data)
             .then((data) => {
                 this.setState({books: data});
@@ -50,8 +50,7 @@ export default class BookList extends Component{
                                     this.state.books.map((book) => (
                                 <tr key={book.id}>
                                     <td>
-                                        <Image src={book.coverPhotoURL} roundedCircle width="25" height="25"/>
-                                        {book.title}
+                                        <Image src={book.coverPhotoURL} roundedCircle width="25" height="25"/>  {book.title}
                                     </td>
                                     <td>{book.author}</td>
                                     <td>{book.isbnNumber}</td>
@@ -59,8 +58,8 @@ export default class BookList extends Component{
                                     <td>{book.language}</td>
                                     <td>
                                         <ButtonGroup>
-                                            <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{''}
-                                            <Button size="sm" variant="outline-danger"><FontAwesomeIcon icon={faTrash}/></Button>
+                                            <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{'  '}
+                                            {' '}<Button size="sm" variant="outline-danger"><FontAwesomeIcon icon={faTrash}/></Button>
                                         </ButtonGroup>
                                     </td>
                                 </tr>

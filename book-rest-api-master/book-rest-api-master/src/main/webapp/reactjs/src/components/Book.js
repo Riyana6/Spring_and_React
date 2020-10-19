@@ -20,7 +20,6 @@ export default class Book extends Component{
         this.setState(() => this.initialState);
     }
     submitBook = event => {
-        alert('Title: '+this.state.title+', Author: '+this.state.author+', Cover Phtoto URL: '+this.state.coverPhotoURL+', ISBN Number: '+this.state.isbnNumber+', Price: '+this.state.price+', Language: '+this.state.language);
         event.preventDefault();
 
         const book = {
@@ -32,9 +31,9 @@ export default class Book extends Component{
             language: this.state.language
         }; 
 
-        axios.post("", book)
+        axios.post("http://localhost:8081/rest/books", book)
             .then(response => {
-                if(response.daye != null) {
+                if(response.data != null) {
                     this.setState(this.initialState);
                     alert("Book Saved Successfully");
                 }
