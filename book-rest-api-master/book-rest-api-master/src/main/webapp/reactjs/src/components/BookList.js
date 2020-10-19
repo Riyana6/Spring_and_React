@@ -19,7 +19,7 @@ export default class BookList extends Component{
     }
 
     findAllBooks(){
-        axios.get("http://localhost:8081/rest/books")
+        axios.get("Access-Control-Allow-Origin: http://localhost:8081/rest/books")
             .then(response => response.data)
             .then((data) => {
                 this.setState({books: data});
@@ -27,7 +27,7 @@ export default class BookList extends Component{
     };
 
     deleteBook = (bookId) => {
-        axios.delete("http://localhost:8081/rest/books/" + bookId)
+        axios.delete("Access-Control-Allow-Origin: http://localhost:8081/rest/books/" + bookId)
             .then(response => {
                 if(response.data != null) {
                     this.setState({"show" : true});
@@ -54,7 +54,7 @@ export default class BookList extends Component{
                         <thead>
                             <tr> 
                                 <th>Title</th>
-                                <th>Aurthor</th>
+                                <th>Author</th>
                                 <th>ISBN Number</th>
                                 <th>Price</th>
                                 <th>Language</th>
@@ -65,7 +65,7 @@ export default class BookList extends Component{
                             {
                                 this.state.books.length === 0 ?
                                 <tr align="center">
-                                    <td colSpan="6">Books Available.</td>
+                                    <td colSpan="6">No Books Available.</td>
                                 </tr> :
                                     this.state.books.map((book) => (
                                 <tr key={book.id}>
@@ -79,7 +79,7 @@ export default class BookList extends Component{
                                     <td>
                                         <ButtonGroup>
                                             <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{'  '}
-                                            {' '}<Button size="sm" variant="outline-danger" onClick={this.deleteBook.bind(this,book.id)}><FontAwesomeIcon icon={faTrash}/></Button>
+                                            <Button size="sm" variant="outline-danger" onClick={this.deleteBook.bind(this,book.id)}><FontAwesomeIcon icon={faTrash}/></Button>
                                         </ButtonGroup>
                                     </td>
                                 </tr>

@@ -69,8 +69,7 @@ export default class Book extends Component{
                                     <Form.Label>Title</Form.Label>
                                     <Form.Control required autoComplete="off"
                                         type="text" name="title"
-                                        value={title}
-                                        onChange={this.bookChange}
+                                        value={title} onChange={this.bookChange}
                                         className={"bg-dark text-white"} 
                                         placeholder="Enter Book Title" />
                                 </Form.Group>
@@ -78,8 +77,7 @@ export default class Book extends Component{
                                     <Form.Label>Author</Form.Label>
                                     <Form.Control required autoComplete="off"
                                         type="text" name="author"
-                                        value={author}
-                                        onChange={this.bookChange} 
+                                        value={author} onChange={this.bookChange} 
                                         className={"bg-dark text-white"} 
                                         placeholder="Enter Book Author" />
                                 </Form.Group>
@@ -89,8 +87,7 @@ export default class Book extends Component{
                                     <Form.Label>Cover Photo URL</Form.Label>
                                     <Form.Control required autoComplete="off"
                                         type="text" name="coverPhotoURL"
-                                        value={coverPhotoURL}
-                                        onChange={this.bookChange} 
+                                        value={coverPhotoURL} onChange={this.bookChange} 
                                         className={"bg-dark text-white"} 
                                         placeholder="Enter Book Cover Photo URL" />
                                 </Form.Group>
@@ -98,8 +95,7 @@ export default class Book extends Component{
                                     <Form.Label>ISBN Number</Form.Label>
                                     <Form.Control required autoComplete="off"
                                         type="text" name="isbnNumber" 
-                                        value={isbnNumber}
-                                        onChange={this.bookChange}
+                                        value={isbnNumber} onChange={this.bookChange}
                                         className={"bg-dark text-white"} 
                                         placeholder="Enter Book ISBN Number" />
                                 </Form.Group>
@@ -109,8 +105,7 @@ export default class Book extends Component{
                                     <Form.Label>Price</Form.Label>
                                     <Form.Control required autoComplete="off"
                                         type="text" name="price"
-                                        value={price}
-                                        onChange={this.bookChange} 
+                                        value={price} onChange={this.bookChange} 
                                         className={"bg-dark text-white"} 
                                         placeholder="Enter Book Price" />
                                 </Form.Group>
@@ -118,8 +113,7 @@ export default class Book extends Component{
                                     <Form.Label>Language</Form.Label>
                                     <Form.Control required autoComplete="off"
                                         type="text" name="language"
-                                        value={language}
-                                        onChange={this.bookChange} 
+                                        value={language} onChange={this.bookChange} 
                                         className={"bg-dark text-white"} 
                                         placeholder="Enter Book Language" />
                                 </Form.Group>
