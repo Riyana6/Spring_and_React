@@ -2,6 +2,7 @@ import React, {Component} from'react';
 import {Card,Table, Image, ButtonGroup , Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faList, faEdit,faTrash} from '@fortawesome/free-solid-svg-icons';
+import MyToast from './MyToast';
 import axios from 'axios';
 
 export default class BookList extends Component{
@@ -22,12 +23,31 @@ export default class BookList extends Component{
             .then(response => response.data)
             .then((data) => {
                 this.setState({books: data});
-            })
-    }
+            });
+    };
+
+    deleteBook = (bookId) => {
+        axios.delete("http://localhost:8081/rest/books/" + bookId)
+            .then(response => {
+                if(response.data != null) {
+                    this.setState({"show" : true});
+                    setTimeout(() => this.setState({"show" : false}) , 3000);
+                    this.setState({
+                        books : this.state.books.filter(book => book.id !== bookId)
+                    });
+                } else {
+                    this.setState({"show":false});
+                }
+            });
+    };
 
     render() {
         return (
-            <Card className={"border border-dark bg-dark text-white"}>
+            <div>
+                <div style = {{"display":this.state.show ? "block" : "none"}}>
+                    <MyToast children = {{show:this.state.show, message:"Book Deleted Successfully",type:"danger"}} />
+                </div>
+                <Card className={"border border-dark bg-dark text-white"}>
                 <Card.Header><FontAwesomeIcon icon={faList}/> BookList</Card.Header>
                 <Card.Body>
                     <Table striped bordered hover variant="dark">
@@ -59,7 +79,7 @@ export default class BookList extends Component{
                                     <td>
                                         <ButtonGroup>
                                             <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{'  '}
-                                            {' '}<Button size="sm" variant="outline-danger"><FontAwesomeIcon icon={faTrash}/></Button>
+                                            {' '}<Button size="sm" variant="outline-danger" onClick={this.deleteBook.bind(this,book.id)}><FontAwesomeIcon icon={faTrash}/></Button>
                                         </ButtonGroup>
                                     </td>
                                 </tr>
@@ -70,6 +90,8 @@ export default class BookList extends Component{
                     </Table>
                 </Card.Body>
             </Card>
+            </div>
+            
         );
     }
 }
