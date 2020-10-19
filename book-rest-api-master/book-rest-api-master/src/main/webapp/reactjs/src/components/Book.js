@@ -1,8 +1,8 @@
 import React, {Component} from'react';
 import {Card,Form,Button ,Col} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSave} from '@fortawesome/free-solid-svg-icons';
-import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
+import {faSave, faPlusSquare} from '@fortawesome/free-solid-svg-icons';
+
 export default class Book extends Component{
     constructor(props) {
         super(props);
@@ -44,7 +44,7 @@ export default class Book extends Component{
                                     value={this.state.author}
                                     onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
-                                    placeholder="Enter Book Name" />
+                                    placeholder="Enter Book Author" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
@@ -57,7 +57,7 @@ export default class Book extends Component{
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Cover Photo URL" />
                             </Form.Group>
-                            <Form.Group as={Col} controlId="formGridIsbnNumber">
+                            <Form.Group as={Col} controlId="formGridISBNNumber">
                                 <Form.Label>ISBN Number</Form.Label>
                                 <Form.Control required
                                     type="text" name="isbnNumber" 

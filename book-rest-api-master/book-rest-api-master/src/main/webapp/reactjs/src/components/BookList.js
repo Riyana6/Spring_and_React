@@ -1,8 +1,9 @@
 import React, {Component} from'react';
-import {Card,Table} from 'react-bootstrap';
+import {Card,Table, Image, ButtonGroup , Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faList} from '@fortawesome/free-solid-svg-icons';
+import {faList, faEdit,faTrash} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+
 export default class BookList extends Component{
 
     constructor(props) {
@@ -13,6 +14,10 @@ export default class BookList extends Component{
     }
 
     componentDidMount() {
+        this.findAllBooks();
+    }
+
+    findAllBooks(){
         axios.get("http://localhost:8081/rest/books")
             .then(response => response.data)
             .then((data) => {
@@ -23,7 +28,7 @@ export default class BookList extends Component{
     render() {
         return (
             <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header><FontAwesomeIcon icon={faList}/>BookList</Card.Header>
+                <Card.Header><FontAwesomeIcon icon={faList}/> BookList</Card.Header>
                 <Card.Body>
                     <Table striped bordered hover variant="dark">
                         <thead>
@@ -37,9 +42,30 @@ export default class BookList extends Component{
                             </tr>
                         </thead>
                         <tbody>
-                            <tr align="center">
-                                <td colSpan="6">{this.state.books.length} Books Available.</td>
-                            </tr>
+                            {
+                                this.state.books.length === 0 ?
+                                <tr align="center">
+                                    <td colSpan="6">Books Available.</td>
+                                </tr> :
+                                    this.state.books.map((book) => (
+                                <tr key={book.id}>
+                                    <td>
+                                        <Image src={book.coverPhotoURL} roundedCircle width="25" height="25"/>
+                                        {book.title}
+                                    </td>
+                                    <td>{book.author}</td>
+                                    <td>{book.isbnNumber}</td>
+                                    <td>{book.price}</td>
+                                    <td>{book.language}</td>
+                                    <td>
+                                        <ButtonGroup>
+                                            <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{''}
+                                            <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faTrash}/></Button>
+                                        </ButtonGroup>
+                                    </td>
+                                </tr>
+                                ))
+                            }
                            
                         </tbody>
                     </Table>
