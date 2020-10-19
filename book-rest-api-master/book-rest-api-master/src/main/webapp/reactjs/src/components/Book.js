@@ -1,47 +1,64 @@
 import React, {Component} from'react';
 import {Card,Form,Button ,Col} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSave, faPlusSquare} from '@fortawesome/free-solid-svg-icons';
+import {faSave, faPlusSquare ,faUndo} from '@fortawesome/free-solid-svg-icons';
 
 export default class Book extends Component{
     constructor(props) {
         super(props);
-        this.state = {title:'', author:'', coverPhotoURL:'', isbnNumber:'', price:'', language:''}
+        this.state = this.initialState;
         this.bookChange = this.bookChange.bind(this);
         this.submitBook = this.submitBook.bind(this);
     }
 
-    submitBook(event) {
-        alert('Title: '+this.state.title+', Author: '+this.state.author+', Cover Phtoto URL: '+this.state.coverPhotoURL+', ISBN Number: '+this.state.isbnNumber+', Price: '+this.state.price+', Language: '+this.state.language);
-        event.preventDefault();
+    initialState = {
+        title:'', author:'', coverPhotoURL:'', isbnNumber:'', price:'', language:''
     }
 
-    bookChange(event) {
+    resetBook = () => {
+        this.setState(() => this.initialState);
+    }
+    submitBook = event => {
+        alert('Title: '+this.state.title+', Author: '+this.state.author+', Cover Phtoto URL: '+this.state.coverPhotoURL+', ISBN Number: '+this.state.isbnNumber+', Price: '+this.state.price+', Language: '+this.state.language);
+        event.preventDefault();
+
+        const book = {
+            title: this.state.title,
+            author: this.state.author,
+            coverPhotoURL: this.state.coverPhotoURL,
+            isbnNumber: this.state.isbnNumber,
+            price: this.state.price,
+            language: this.state.language
+        }; 
+    }
+
+    bookChange = event => {
         this.setState({
             [event.target.name]:event.target.value
         });
     }
     render() {
+        const {title,author,coverPhotoURL,isbnNumber,price,language} = this.state;
         return (
             <Card className={"border border-dark bg-dark text-white"}>
                 <Card.Header><FontAwesomeIcon icon={faPlusSquare}/> Add Book</Card.Header>
-                <Form onSubmit={this.submitBook} id="bookFormId">
+                <Form onReset={this.resetBook} onSubmit={this.submitBook} id="bookFormId">
                     <Card.Body>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridTitle">
                                 <Form.Label>Title</Form.Label>
-                                <Form.Control required
+                                <Form.Control required autoComplete="off"
                                      type="text" name="title"
-                                     value={this.state.title}
+                                     value={title}
                                      onChange={this.bookChange}
                                      className={"bg-dark text-white"} 
                                      placeholder="Enter Book Title" />
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridAuthor">
                                 <Form.Label>Author</Form.Label>
-                                <Form.Control required
+                                <Form.Control required autoComplete="off"
                                     type="text" name="author"
-                                    value={this.state.author}
+                                    value={author}
                                     onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Author" />
@@ -50,18 +67,18 @@ export default class Book extends Component{
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridCoverPhotoURL">
                                 <Form.Label>Cover Photo URL</Form.Label>
-                                <Form.Control required
+                                <Form.Control required autoComplete="off"
                                     type="text" name="coverPhotoURL"
-                                    value={this.state.coverPhotoURL}
+                                    value={coverPhotoURL}
                                     onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Cover Photo URL" />
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridISBNNumber">
                                 <Form.Label>ISBN Number</Form.Label>
-                                <Form.Control required
+                                <Form.Control required autoComplete="off"
                                     type="text" name="isbnNumber" 
-                                    value={this.state.isbnNumber}
+                                    value={isbnNumber}
                                     onChange={this.bookChange}
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book ISBN Number" />
@@ -70,18 +87,18 @@ export default class Book extends Component{
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridPrice">
                                 <Form.Label>Price</Form.Label>
-                                <Form.Control required
+                                <Form.Control required autoComplete="off"
                                     type="text" name="price"
-                                    value={this.state.price}
+                                    value={price}
                                     onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Price" />
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridLanguage">
                                 <Form.Label>Language</Form.Label>
-                                <Form.Control required
+                                <Form.Control required autoComplete="off"
                                     type="text" name="language"
-                                    value={this.state.language}
+                                    value={language}
                                     onChange={this.bookChange} 
                                     className={"bg-dark text-white"} 
                                     placeholder="Enter Book Language" />
@@ -90,7 +107,10 @@ export default class Book extends Component{
                     </Card.Body>
                     <Card.Footer style={{"textAlign":"right"}}>
                         <Button size="sm" variant="success" type="submit">
-                        <FontAwesomeIcon icon={faSave}/> Submit
+                            <FontAwesomeIcon icon={faSave}/> Submit
+                        </Button>{' '}
+                        <Button size="sm" variant="info" type="reset">
+                            <FontAwesomeIcon icon={faUndo}/> Reset
                         </Button>
                     </Card.Footer>
                 </Form>
