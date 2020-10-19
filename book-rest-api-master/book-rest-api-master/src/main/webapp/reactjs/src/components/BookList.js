@@ -8,13 +8,16 @@ export default class BookList extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            book : []
+            books : []
         };
     }
 
     componentDidMount() {
         axios.get("http://localhost:8081/rest/books")
-            .then(response => console.log(response.data));
+            .then(response => response.data)
+            .then((data) => {
+                this.setState({books: data});
+            })
     }
 
     render() {
@@ -35,7 +38,7 @@ export default class BookList extends Component{
                         </thead>
                         <tbody>
                             <tr align="center">
-                                <td colSpan="6">No Books Available.</td>
+                                <td colSpan="6">{this.state.books.length} Books Available.</td>
                             </tr>
                            
                         </tbody>
