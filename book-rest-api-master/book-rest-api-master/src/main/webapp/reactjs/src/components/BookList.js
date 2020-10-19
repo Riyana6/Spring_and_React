@@ -18,7 +18,7 @@ export default class BookList extends Component{
     }
 
     findAllBooks(){
-        axios.get("http://localhost:8081/rest/books")
+        axios.get("http://localhost:8081/rest/books/")
             .then(response => response.data)
             .then((data) => {
                 this.setState({books: data});
@@ -60,7 +60,7 @@ export default class BookList extends Component{
                                     <td>
                                         <ButtonGroup>
                                             <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{''}
-                                            <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faTrash}/></Button>
+                                            <Button size="sm" variant="outline-danger"><FontAwesomeIcon icon={faTrash}/></Button>
                                         </ButtonGroup>
                                     </td>
                                 </tr>

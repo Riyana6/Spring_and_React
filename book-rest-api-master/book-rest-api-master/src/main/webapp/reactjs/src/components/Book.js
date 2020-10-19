@@ -2,6 +2,7 @@ import React, {Component} from'react';
 import {Card,Form,Button ,Col} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSave, faPlusSquare ,faUndo} from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 export default class Book extends Component{
     constructor(props) {
@@ -30,6 +31,14 @@ export default class Book extends Component{
             price: this.state.price,
             language: this.state.language
         }; 
+
+        axios.post("", book)
+            .then(response => {
+                if(response.daye != null) {
+                    this.setState(this.initialState);
+                    alert("Book Saved Successfully");
+                }
+            });
     }
 
     bookChange = event => {
