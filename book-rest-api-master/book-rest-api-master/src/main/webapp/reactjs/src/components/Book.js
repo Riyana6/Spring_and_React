@@ -1,7 +1,7 @@
 import React, {Component} from'react';
 import {Card,Form,Button ,Col} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSave, faPlusSquare ,faUndo} from '@fortawesome/free-solid-svg-icons';
+import {faSave, faPlusSquare ,faUndo , faList} from '@fortawesome/free-solid-svg-icons';
 import MyToast from './MyToast';
 import axios from 'axios';
 
@@ -56,7 +56,7 @@ export default class Book extends Component{
         return (
             <div>
                 <div style = {{"display":this.state.show ? "block" : "none"}}>
-                    <MyToast children = {{show:this.state.show, message:"Book Saved Successfully" , type:"success"}} />
+                    <MyToast show = {this.state.show} message ={"Book Saved Successfully"} type={"success"} />
                 </div>
                     <Card className={"border border-dark bg-dark text-white"}>
                         <Card.Header>
@@ -125,6 +125,9 @@ export default class Book extends Component{
                             </Button>{' '}
                             <Button size="sm" variant="info" type="reset">
                                 <FontAwesomeIcon icon={faUndo}/> Reset
+                            </Button>{' '}
+                            <Button size="sm" variant="info" type="button" onClick = {this.bookList.bind()}>
+                                <FontAwesomeIcon icon={faList}/> BookList
                             </Button>
                         </Card.Footer>
                     </Form>
