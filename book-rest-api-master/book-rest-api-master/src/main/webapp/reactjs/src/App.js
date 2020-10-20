@@ -24,6 +24,7 @@ function App() {
               <Route path="/add" exact component={Book}/>
               <Route path="/edit/:id" exact component={Book}/>
               <Route path="/list" exact component={BookList}/>
+              <Route path="/users" exact component={UserList}/>
             </Switch>
           </Col>
         </Row>
