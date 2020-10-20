@@ -27,7 +27,7 @@ export default class BookList extends Component{
     };
 
     deleteBook = (bookId) => {
-        axios.delete("Access-Control-Allow-Origin: http://localhost:8081/rest/books/" + bookId)
+        axios.delete("Access-Control-Allow-Origin: http://localhost:8081/rest/books" + bookId)
             .then(response => {
                 if(response.data != null) {
                     this.setState({"show" : true});
