@@ -27,6 +27,9 @@ export default class UserList extends Component{
     };
 
     render() {
+
+        const {users, currentPage, usersPerPage} = this.state;
+
         return (
             <div>
                 <Card className={"border border-dark bg-dark text-white"}>
