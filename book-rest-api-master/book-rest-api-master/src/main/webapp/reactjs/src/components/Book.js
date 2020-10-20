@@ -15,12 +15,16 @@ export default class Book extends Component{
     }
 
     initialState = {
-        title:'', author:'', coverPhotoURL:'', isbnNumber:'', price:'', language:''
-    }
+        id:'', title:'', author:'', coverPhotoURL:'', isbnNumber:'', price:'', language:''
+    };
+
+    componentDidMount() {
+        const bookId = +this.props.match.params.id;
+    } 
 
     resetBook = () => {
         this.setState(() => this.initialState);
-    }
+    };
     submitBook = event => {
         event.preventDefault();
 
@@ -43,13 +47,18 @@ export default class Book extends Component{
                 }
             });
             this.setState(this.initialState);
-    }
+    };
 
     bookChange = event => {
         this.setState({
             [event.target.name]:event.target.value
         });
-    }
+    };
+
+    bookList = () => {
+        return this.props.history.push("/list");
+    };
+
     render() {
         const {title, author, coverPhotoURL, isbnNumber, price, language} = this.state;
         
