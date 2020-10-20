@@ -29,6 +29,10 @@ export default class UserList extends Component{
     render() {
 
         const {users, currentPage, usersPerPage} = this.state;
+        const lastIndex = currentPage*usersPerPage;
+        const firstIndex = lastIndex - usersPerPage;
+        const currentUsers = users.slice(firstIndex,lastIndex);
+        const totalPages = users.length / usersPerPage;
 
         return (
             <div>
@@ -47,12 +51,12 @@ export default class UserList extends Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.users.length === 0 ?
+                                {users.length === 0 ?
                                     <tr align = "center">
                                         <td colSpan = "6"> No Users Available
                                         </td>
                                     </tr> :
-                                    this.state.users.map((user, index) => (
+                                    currentUsers.map((user, index) => (
                                         <tr key ={index}>
                                             <td>{user.first}{'  '}{user.last}</td>
                                             <td>{user.email}</td>
@@ -65,6 +69,15 @@ export default class UserList extends Component{
                             </tbody>
                         </Table>
                     </Card.Body>
+                    <Card.Footer>
+                        <div style ={{"float" : "left"}}>
+                            Showing Page {currentPage} of {totalPages}
+                        </div>
+                        <div style ={{"float" : "right"}}>
+                            <InputGroup>
+                            </InputGroup>
+                        </div>
+                    </Card.Footer>
                 </Card>   
             </div>
         );
