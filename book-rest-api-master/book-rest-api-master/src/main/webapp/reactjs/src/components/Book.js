@@ -20,7 +20,30 @@ export default class Book extends Component{
 
     componentDidMount() {
         const bookId = +this.props.match.params.id;
-    } 
+        if(bookId) {
+            this.findBookById(bookId);
+        }
+    }
+
+    findBookById = (bookId) => {
+        axios.get("http://localhost:8081/rest/books/" + bookId)
+            .then(response => {
+                if(response.data != null) {
+                    this.setState({
+                        id: response.data.id,
+                        title: response.data.title,
+                        author: response.data.author,
+                        coverPhotoURL: response.data.coverPhotoURL,
+                        isbnNumber: response.data.isbnNumber,
+                        price: response.data.price,
+                        language: response.data.language
+                    });
+                }
+            }).catch((error) => {
+                console.error("Error -" +error);
+            });
+    }
+    
 
     resetBook = () => {
         this.setState(() => this.initialState);
@@ -130,7 +153,7 @@ export default class Book extends Component{
                         </Card.Body>
                         <Card.Footer style={{"textAlign":"right"}}>
                             <Button size="sm" variant="success" type="submit">
-                                <FontAwesomeIcon icon={faSave}/> Submit
+                                <FontAwesomeIcon icon={faSave}/> {this.state.id ? "Update" : "Submit"}
                             </Button>{' '}
                             <Button size="sm" variant="info" type="reset">
                                 <FontAwesomeIcon icon={faUndo}/> Reset
