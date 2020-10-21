@@ -17,6 +17,9 @@ export default function App() {
     marginTop:"20px"
   };
 
+  const heading = "Welcome to Book Shop";
+  const desc = " Good Friends, Good Books, and a sleepy conscience: this is the ideal life."
+
   return (
     <Router>
       <NavigationBar/>
