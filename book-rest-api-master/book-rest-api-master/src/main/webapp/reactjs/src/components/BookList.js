@@ -20,14 +20,22 @@ export default class BookList extends Component{
     }
 
     findAllBooks(){
+        fetch("http://localhost:8081/rest/books")
+            .then(response => response.json)
+            .then((data) => {
+                this.setState({books: data});
+            });
+        };
+
+    /*findAllBooks(){
         axios.get("http://localhost:8081/rest/books")
             .then(response => response.data)
             .then((data) => {
                 this.setState({books: data});
             });
-    };
+        };*/
 
-    deleteBook = (bookId) => {
+    /*deleteBook = (bookId) => {
         axios.delete("http://localhost:8081/rest/books" + bookId)
             .then(response => {
                 if(response.data != null) {
@@ -40,7 +48,7 @@ export default class BookList extends Component{
                     this.setState({"show":false});
                 }
             });
-    };
+    };*/
 
     render() {
         return (
