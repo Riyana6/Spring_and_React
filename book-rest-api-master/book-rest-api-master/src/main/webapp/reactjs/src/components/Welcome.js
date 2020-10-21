@@ -7,10 +7,10 @@ export default function Welcome(props) {
             <h1>{props.heading}</h1>
             <blockquote className="blockquote mb-0">
                 <p>
-                   {props.desc}
+                   {props.quote}
                 </p>
                 <footer className="blockquote-footer">
-                    Jeema Riyana
+                    {props.footer}
                 </footer>
             </blockquote>
         </Jumbotron>
