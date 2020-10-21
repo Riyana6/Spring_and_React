@@ -28,16 +28,16 @@ export default class Book extends Component{
     findBookById = (bookId) => {
         fetch("http://localhost:8081/rest/books/" + bookId)
             .then(response => response.json())
-            .then(response => {
-                if(response.data != null) {
+            .then((book) => {
+                if(book) {
                     this.setState({
-                        id: response.data.id,
-                        title: response.data.title,
-                        author: response.data.author,
-                        coverPhotoURL: response.data.coverPhotoURL,
-                        isbnNumber: response.data.isbnNumber,
-                        price: response.data.price,
-                        language: response.data.language
+                        id: book.id,
+                        title: book.title,
+                        author: book.author,
+                        coverPhotoURL: book.coverPhotoURL,
+                        isbnNumber: book.isbnNumber,
+                        price: book.price,
+                        language: book.language
                     });
                 }
             }).catch((error) => {
