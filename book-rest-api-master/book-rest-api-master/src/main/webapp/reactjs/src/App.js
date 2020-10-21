@@ -16,6 +16,7 @@ export default function App() {
   const marginTop = {
     marginTop:"20px"
   };
+  
   return (
     <Router>
       <NavigationBar/>
