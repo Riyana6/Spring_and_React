@@ -27,7 +27,7 @@ export default function App() {
         <Row>
           <Col lg={12} style={marginTop}>
             <Switch>
-              <Route path="/" exact component={() => <Welcome heading={} desc={}/>}/>
+              <Route path="/" exact component={() => <Welcome heading={heading} desc={desc}/>}/>
               <Route path="/add" exact component={Book}/>
               <Route path="/edit/:id" exact component={Book}/>
               <Route path="/list" exact component={BookList}/>
