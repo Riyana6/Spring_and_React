@@ -35,6 +35,25 @@ export default class BookList extends Component{
             });
         };*/
 
+    deleteBook = (bookId) => {
+        fetch("http://localhost:8081/rest/books" + bookId, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())    
+        .then((book) => {
+            if(book) {
+                this.setState({"show" : true});
+                setTimeout(() => this.setState({"show" : false}) , 3000);
+                this.setState({
+                    books : this.state.books.filter(book => book.id !== bookId)
+                });
+            } else {
+                this.setState({"show":false});
+            }
+        });
+    };
+    
+
     /*deleteBook = (bookId) => {
         axios.delete("http://localhost:8081/rest/books" + bookId)
             .then(response => {
