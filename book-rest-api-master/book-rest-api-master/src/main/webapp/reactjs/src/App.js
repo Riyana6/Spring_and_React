@@ -11,7 +11,8 @@ import Book from './components/Book';
 import BookList from './components/BookList';
 import UserList from './components/UserList';
 
-function App() {
+
+export default function App() {
   const marginTop = {
     marginTop:"20px"
   };
@@ -36,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+
