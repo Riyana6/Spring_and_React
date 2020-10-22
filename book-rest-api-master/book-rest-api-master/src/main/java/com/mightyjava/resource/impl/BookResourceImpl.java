@@ -22,7 +22,7 @@ import com.mightyjava.service.IService;
 
 @RestController
 @RequestMapping("/books")
-@CrossOrigin("Access-Control-Allow-Origin: *")
+@CrossOrigin("origins: http//localhost:3000")
 public class BookResourceImpl implements Resource<Book> {
 	
 	private static Logger log = LoggerFactory.getLogger(BookResourceImpl.class);
