@@ -3,8 +3,10 @@ package com.mightyjava.service;
 import java.util.Collection;
 import java.util.Optional;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+
 public interface IService<T> {
-	Collection<T> findAll();
+	Page<T> findAll(Pageable pageable);
 	
 	Optional<T> findById(Long id);
 	
